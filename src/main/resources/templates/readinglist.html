@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reading List</title>
+    <link rel="stylesheet" th:href="@{/style.css}"></link>
+</head>
+<body>
+<h2>Your Reading List</h2>
+
+<div th:unless="${#lists.isEmpty(books)}">
+    <table>
+        <tr th:each="book : ${books}">
+            <td><span th:text="${book.author}">Author</span></td>
+            <td><span th:text="${book.title}">Title</span></td>
+            <td><span th:text="${book.isbn}">ISBN</span></td>
+            <td><span th:text="${book.description}">Description</span></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${#lists.isEmpty(books)}">
+    <p>You have no books in your reading list.</p>
+</div>
+
+<hr/>
+
+<h3>Add a book</h3>
+<form method="POST" th:action="@{/{reader}(reader=${reader})}">
+    <label for="title">Title:</label>
+    <input type="text" name="title" size="50"></input><br/>
+    <label for="author">Author:</label>
+    <input type="text" name="author" size="50"></input><br/>
+    <label for="isbn">ISBN:</label>
+    <input type="text" name="isbn" size="15"></input><br/>
+    <label for="description">Description:</label><br/>
+    <textarea name="description" cols="80" rows="5"></textarea><br/>
+    <input type="submit" value="Add Book"></input>
+</form>
+</body>
+</html>
