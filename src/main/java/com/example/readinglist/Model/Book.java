@@ -1,4 +1,4 @@
-package com.example.readinglist;
+package com.example.readinglist.Model;
 
 
 import jakarta.persistence.Entity;
